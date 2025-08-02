@@ -101,7 +101,11 @@ class FlappyBird {
     }
     
     addPipe() {
-        const gapY = Math.random() * (this.height - this.pipeGap - 200) + 100;
+        // Ensure the gap is properly positioned with adequate space from top and bottom
+        const minGapY = this.skyY + 50; // Minimum distance from top
+        const maxGapY = this.groundY - this.pipeGap - 50; // Maximum distance from bottom
+        const gapY = Math.random() * (maxGapY - minGapY) + minGapY;
+        
         const pipe = {
             x: this.width + this.pipeWidth,
             topHeight: gapY,
